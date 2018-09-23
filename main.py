@@ -11,28 +11,29 @@ alpha_form = """
 <html>
     <head>
         <style>
-            form{
+            form{{
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea{
+            }}
+            textarea{{
                 margin:10px 0;
                 width: 540px;
                 height: 120px;
-            }
+                
+            }}
         </style>
     </head>
     <body>
-        <form action="/encrypt" method="POST">
+        <form acton="/" method="POST">
         <div>
             <label for="rot">Rotate by:</label>
-                <input type="text" name="rot" value='0'/>
+                <input type="text" name="rot" value= '0'/>
         </div>
-            <textarea type="text" name="text"></textarea>
+            <textarea type="text" name="text">{0}</textarea>
             <br>
             <input type="submit"/>
         </label>
@@ -42,15 +43,15 @@ alpha_form = """
 
 @app.route("/")
 def index():
-    return alpha_form
+    return alpha_form.format ("")
 
 
-@app.route("/encrypt", methods=['POST'])
-def encrypt():
-    rot = rot
-    text = rotate_string
-    answer = request.form["text"]
-    return "The answer is:"+answer
+@app.route("/", methods=['POST'])
+def encrypt(): 
+    user_rot = int(request.form['rot'])
+    user_text = request.form['text']
+    answer = rotate_string(user_text, user_rot)
+    return alpha_form.format(answer)
 
 app.run()
 
